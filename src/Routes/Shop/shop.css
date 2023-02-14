@@ -1,0 +1,40 @@
+.section-header .title{
+    font-weight: 600;
+    font-size: 17px;
+color: var(--color-black);
+}
+.filter-item-label{
+    font-weight: 500;
+    font-size: 15px;
+    color: var(--color-black);
+    margin-bottom: 10px;
+}
+.filter-item-list{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.filter-item input[type="checkbox"] {
+    margin-right: 8px;
+}
+.filter-item-list li label{
+   font-weight: 400;
+   color: var(--color-dark);
+   cursor: pointer;
+}
+
+.filter-item-list li input[type="checkbox"]{
+    font-weight: 400;
+    color: var(--color-dark);
+    cursor: pointer;
+ }
+
+ .section-header-item{
+    color: var(--color-primary);
+    font-weight: 500;
+    font-size: 16px;
+ }
+
+ .price-lable{
+    font-size: 13px;
+ }

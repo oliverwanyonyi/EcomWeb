@@ -1,0 +1,21 @@
+.products-section {
+  padding: 10px 0;
+}
+.product-section {
+  margin-bottom: 20px;
+}
+.products-section-header {
+  padding: 0 10px 15px;
+}
+.products-section-header .title {
+  color: var(--color-primary);
+  font-weight: 700;
+  font-size: 16px;
+}
+.view-all-btn {
+  color: var(--color-primary);
+  border: 2px solid var(--color-primary);
+  padding: 5px 5px;
+  border-radius: 5px;
+  font-size: 13px;
+}

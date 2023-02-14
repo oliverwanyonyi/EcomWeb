@@ -1,0 +1,26 @@
+
+
+.site-navigation{
+    margin-top: 20px ;
+
+    margin-bottom: 20px ;
+}
+.site-nav-items{
+    display: flex;
+    align-items: center;
+    list-style-type: none;
+}
+.site-nav-items li a{
+   color: var(--color-black);
+   font-weight: 600;
+   font-size: 14px;
+}
+.site-nav-items li.active a{
+    font-weight: 400;
+ }
+
+.site-nav-items li:not(:last-child)::after{
+    content: "→";
+    margin: 0 4px;
+    
+}

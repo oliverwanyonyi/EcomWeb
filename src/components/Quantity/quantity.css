@@ -1,0 +1,21 @@
+
+.qty-container {
+    min-width: 100px;
+    background: var(--color-light-greyish);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 10px 0;
+  }
+  td .qty-container{
+    width: 80px;
+  }
+  .increment-btn,
+  .decrement-btn {
+    cursor: pointer;
+    font-size: 15px;
+  }
+  .qty-container .counter {
+    font-size: 14px;
+    color: var(--color-primary);
+  }

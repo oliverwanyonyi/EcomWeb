@@ -1,0 +1,15 @@
+.message-box h3{
+    width:max-content;
+    margin: 0 auto;
+    font-size: 15px;
+    font-weight: 400;
+    color: #303030;
+
+}
+.message-box h3 a{
+    font-size: 13px;
+    color: #ffff;
+    background: var(--color-primary);
+    padding: 5px 10px;
+    border-radius: 5px;
+}

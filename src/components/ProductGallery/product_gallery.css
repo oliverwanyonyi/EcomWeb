@@ -1,0 +1,32 @@
+.main-product-image {
+  height: 65vh;
+  overflow: hidden;
+}
+.main-product-image img {
+  height: 100%;
+}
+
+.gallery-img.selected {
+  outline: 3px solid var(--color-redish);
+}
+
+.product-gallery img {
+  height: 100%;
+}
+.product-gallery .gallery-img {
+  height: 60px;
+  width: 60px;
+}
+@media(min-width:768px){
+    .product-gallery .gallery-img {
+        height: 80px;
+        width: 80px;
+      }
+}
+.gap{
+    gap: 14px;
+}
+.product-gallery-gallery{
+  text-align: center;
+
+}
