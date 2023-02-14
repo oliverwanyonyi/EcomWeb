@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import p3 from "../../assets/p4.jpg";
 import BreadCrump from "../../components/BreadCrump";
 import Navbar from "../../components/Navbar/Navbar";
 import Preloader from "../../components/Preloader/Preloader";

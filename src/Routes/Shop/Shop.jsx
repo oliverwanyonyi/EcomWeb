@@ -1,5 +1,4 @@
 import './shop.css'
-import p1 from '../../assets/p1.jpg'
 import Product from '../../components/Product/Product';
 
 const Shop = () => {
@@ -105,7 +104,7 @@ const Shop = () => {
                       </div>
 
                       <a href="http://localhost:5500/product-details.html">
-                        <img src={p1} />
+                        <img src='' />
                       </a>
                       <button className="btn cart-btn">
                         <span className="btn-icon fas fa-shopping-basket"></span>

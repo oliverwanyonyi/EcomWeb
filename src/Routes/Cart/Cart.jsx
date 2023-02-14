@@ -1,6 +1,5 @@
 
 import BreadCrump from "../../components/BreadCrump";
-import p1 from "../../assets/p1.jpg";
 import './cart.css'
 import QuantityInput from '../../components/Quantity'
 import {Link} from 'react-router-dom'
