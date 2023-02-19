@@ -1,0 +1,28 @@
+.analytics{
+    padding: 20px 30px;
+}
+
+.ecom-summary-item{
+    text-align: center;
+    border: 1px solid var(--color-primary);
+    border-radius: 10px;
+}
+
+.summary-title{
+    font-weight: 500;
+    font-size: 17px;
+    color: var(--color-black);
+    margin-bottom: 10px;
+}
+
+.summary-count{
+    font-weight: 400;
+    color: #292929;
+}
+.icon{
+    margin-bottom: 10px;
+    color: var(--color-primary);
+    font-size: 14px;
+}
+
+

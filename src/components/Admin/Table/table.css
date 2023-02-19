@@ -1,0 +1,40 @@
+.table-responsive {
+  overflow-x: auto;
+  display: block;
+  width: 100;
+}
+
+.page-header{
+    padding: 20px 0;
+    font-weight: 600;
+    color: #292929;
+}
+
+.table {
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 1rem;
+  background-color: transparent;
+  border-collapse: separate;
+  border-spacing: 0 5px;
+}
+
+.table th {
+  background: var(--color-primary);
+  color: var(--color-white);
+ 
+  font-size: 15px;
+  font-weight: 700;
+}
+.table th,td {padding: .75rem;
+    font-size: 15px;
+    
+}
+.table td{
+    font-weight: 400;
+    color: #292929;
+}
+
+.table tr {
+  background: var(--color-white);
+}

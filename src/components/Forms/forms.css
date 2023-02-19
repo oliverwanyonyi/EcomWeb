@@ -1,0 +1,46 @@
+.form-header {
+  margin-bottom: 20px;
+}
+
+.form-header h3 {
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+.form-body .row {
+  margin-bottom: 15px;
+}
+.form-group label {
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--color-primary);
+}
+.form-group input,
+select {
+  padding: 20px 20px;
+  color: var(--color-primary) !important;
+  background: var(--color-light-greyish);
+  border-radius:8px;
+}
+.form-group select{
+    padding: 0 20px;
+    height: 40px;
+}
+.form-group input:focus,
+textarea:focus,
+select:focus {
+  outline: 1px solid var(--color-primary);
+}
+.form-group textarea {
+  width: 100%;
+  min-height: 200px;
+  resize: vertical;
+  background: var(--color-light-greyish);
+  padding: 20px 20px;
+  border-radius:8px;
+
+}
+.form-footer button {
+  background: var(--color-primary);
+  color: var(--color-white);
+}

@@ -27,7 +27,7 @@ body {
   background: var(--color-light-greyish);
   overflow-x: hidden;
 }
-button,input,select{
+button,input,select,textarea{
   background: none;
   outline: none;
   border: none;
@@ -67,4 +67,10 @@ img {
   height: auto;
   max-width: 100%;
   object-fit: cover;
+}
+.btn{
+  padding: 13px 20px!important;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 8px;
 }
