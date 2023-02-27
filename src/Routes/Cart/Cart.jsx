@@ -1,5 +1,5 @@
 
-import BreadCrump from "../../components/BreadCrump";
+import BreadCrump from "../../components/BreadCrump/BreadCrump";
 import './cart.css'
 import QuantityInput from '../../components/Quantity'
 import {Link} from 'react-router-dom'
@@ -7,17 +7,26 @@ import { AppState } from "../../Store/store";
 import Message from "../../components/MessageBox/Message";
 import Navbar from "../../components/Navbar/Navbar";
 const Cart = () => {
-
   const {state,dispatch} = AppState()
+
+  
   return (
     <main className="cart">
       <Navbar/>
-      <BreadCrump />
+      <BreadCrump hierachies={[
+    {
+      name:"Home",
+      path:'/'
+    },{
+      name:"Cart",
+      path:'/cart'
+    }
+  ]} />
       <div className="container">
         <div className="row">
           <div className="col-md-9">
             <div className="bg-white px-2 py-3">
-              {state.cart.length === 0?<Message/>:
+              {state.cart.length === 0?<Message  type="cart"/>:
               <table>
                 <thead className="cart-header">
                   <tr>
@@ -28,8 +37,8 @@ const Cart = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {state.cart.map(item=>(
- <tr>
+                  {state.cart.map((item,idx)=>(
+ <tr key={idx}>
  <td>
    <div className="product-thumb">
      <Link to={"/products/" + item.id}><img src={item.thumb} alt="" /></Link>
@@ -52,7 +61,7 @@ const Cart = () => {
 </div>
 </div>
  </td>
- <td className="cart-desktop-visible">  <span className="price-qty">{item.quantity} </span></td>
+ <td className="cart-desktop-visible">  <span className="price-qty">{item.price} </span></td>
  <td>
    <QuantityInput qty={item.quantity} item={item}/>
  </td>

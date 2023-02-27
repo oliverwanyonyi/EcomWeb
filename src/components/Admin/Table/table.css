@@ -1,13 +1,13 @@
 .table-responsive {
   overflow-x: auto;
   display: block;
-  width: 100;
+  width: 100%;
 }
 
-.page-header{
-    padding: 20px 0;
-    font-weight: 600;
-    color: #292929;
+.page-header {
+  padding: 20px 0;
+  font-weight: 600;
+  color: #292929;
 }
 
 .table {
@@ -22,19 +22,25 @@
 .table th {
   background: var(--color-primary);
   color: var(--color-white);
- 
+  text-align: left;
   font-size: 15px;
   font-weight: 700;
 }
-.table th,td {padding: .75rem;
-    font-size: 15px;
-    
+.table th,
+.table td {
+  padding: 0.75rem;
+  font-size: 15px;
 }
-.table td{
-    font-weight: 400;
-    color: #292929;
+.table td {
+  font-weight: 400;
+  color: #292929;
+  
+  white-space: nowrap;
 }
 
 .table tr {
   background: var(--color-white);
+}
+.gap-1 {
+  gap: 10px;
 }

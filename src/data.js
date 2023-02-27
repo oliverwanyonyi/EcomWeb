@@ -32,7 +32,7 @@ sub_links:[
     name: "Categories",
     sub_links: [
       { name: "New Category", to: "/admin/categories/new", id: 1 },
-      { name: "Categories", to: "admin/categories/all", id: 2 },
+      { name: "Categories", to: "/admin/categories/all", id: 2 },
     ],
     id:5
   },

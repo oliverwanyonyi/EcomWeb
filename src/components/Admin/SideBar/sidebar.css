@@ -2,8 +2,7 @@
   position: fixed;
   left: -280px;
   width: 0;
-  transition: 500ms;
-
+  /* transition: 500ms; */
   overflow: hidden;
   background: var(--color-primary);
   height: 100vh;

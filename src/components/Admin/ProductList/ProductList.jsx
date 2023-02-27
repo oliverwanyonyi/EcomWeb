@@ -1,7 +1,11 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import { useFetch } from "../../../useFetch";
+import Spinner from "../../Preloader/Spinner";
 import Table from "../Table/Table";
 
 const ProductList = () => {
+  const {data,loading} = useFetch('/products')
   return (
     <div className="container-fluid">
       <Table>
@@ -12,32 +16,43 @@ const ProductList = () => {
               <table className="table">
                 <thead>
                   <tr>
+                    <th>Display</th>
                     <th>Name</th>
                     <th>Category</th>
                     <th>Price</th>
-                    <th>Brand</th>
+                    <th>Discount</th>
+                   
                     <th>Description</th>
                     <th>Instock</th>
+                    <th>Actions</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td> Test Name</td>
-                    <td> Shoes For All</td>
-                    <td> Ksh 2000</td>
-                    <td> Nike</td>
-                    <td> Nike is a nice shoes</td>
-                    <td>20</td>
-                  </tr>
+                  {loading ? <Spinner/>:
+                  data?.map((item,idx)=>(
+                    <tr key={(idx)}>
+                      <td>
+                        <img src={item.Product_Images[0].url} alt="" />
+                      </td>
+                    <td> {item.name}</td>
+                    <td> {item.Category.name}</td>
+                    <td>Ksh {item.price}</td>
+                    <td>Ksh {item.discount} %</td>
 
-                  <tr>
-                    <td> Test Name</td>
-                    <td> Shoes For All</td>
-                    <td> Ksh 2000</td>
-                    <td> Nike</td>
-                    <td> Nike is a nice shoes</td>
-                    <td>20</td>
+                    <td> {item.description}</td>                
+                    <td>{item.countInStock}</td>
+                    <td>
+                      <div className="d-flex gap-1">
+                        <button className="btn btn-danger">Delete</button>
+                        <button className="btn btn-primary"><Link to='/'>Edit</Link></button>
+
+                      </div>
+                    </td>
                   </tr>
+                  ))}
+                 
+
+                 
                 </tbody>
               </table>
             </div>

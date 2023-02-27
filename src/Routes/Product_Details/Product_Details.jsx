@@ -1,36 +1,23 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import BreadCrump from "../../components/BreadCrump";
+import BreadCrump from "../../components/BreadCrump/BreadCrump";
 import Navbar from "../../components/Navbar/Navbar";
 import Preloader from "../../components/Preloader/Preloader";
-import ProductGallery from "../../components/ProductGallery";
+import ProductGallery from "../../components/ProductGallery/ProductGallery";
 import { AppState } from "../../Store/store";
+import { useFetch } from "../../useFetch";
 import "./product_details.css";
-import { addToCart } from "./utils/addToCart";
+import { addToCart } from "../../utils/addToCart";
+import Spinner from "../../components/Preloader/Spinner";
 const Product_Details = () => {
-  const [product, setProduct] = useState();
-  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const { state, dispatch } = AppState();
   const [qty, setQty] = useState(1);
   const { id } = useParams();
-  console.log(id);
-  const getProduct = async () => {
-    setLoading(true);
-    try {
-      const { data } = await axios.get(
-        "https://fakestoreapi.com/products/" + id
-      );
-      setProduct(data);
-      setLoading(false);
-    } catch (error) {
-      setLoading(false);
-      console.log(error);
-    }
-  };
+  const {data,loading,error} = useFetch('/products/'+id)
+ 
   const handleClick = () => {
-    addToCart(product, state, dispatch);
+    addToCart(data.product, state, dispatch);
     navigate("/cart");
   };
   // const addToCart = () => {
@@ -53,13 +40,10 @@ const Product_Details = () => {
   //   dispatch({ type: "ADD_TO_CART", payload: { item: cartItem } });
   // };
 
-  useEffect(() => {
-    getProduct();
-  }, []);
   return (
     <div className="main">
       <Navbar />
-      <BreadCrump />
+      {loading ? <Spinner/>:<BreadCrump hierachies={data?.hierachies} />}
       <div className="product-container">
         <div className="container">
           <div className="bg-white py-3 px-2">
@@ -68,11 +52,11 @@ const Product_Details = () => {
             ) : (
               <div className="row g-3">
                 <div className="col-md-6">
-                  <ProductGallery image={product?.image} />
+                  <ProductGallery images={data.product.Product_Images} />
                 </div>
                 <div className="col-md-6">
                   <div className="col_product-details">
-                    <h2 className="product-title">{product?.title}</h2>
+                    <h2 className="product-title">{data.product?.name}</h2>
                     <div className="review">
                       <div className="stars-container">
                         <span className="fas fa-star"></span>
@@ -84,13 +68,20 @@ const Product_Details = () => {
                       <p className="review-title">(10) reviews</p>
                     </div>
                     <div className="product-price">
-                      <p className="rg-p">
-                        Ksh {(product?.price * 126).toFixed(2)}
-                      </p>
-
-                      <p className="ds-p">
-                        Ksh {(product?.price * 126 - 200).toFixed(2)}
-                      </p>
+                      {data.product?.discount > 0 ? (
+                        <>
+                          <p className="rg-p">
+                            Ksh {(data.product?.price).toFixed(2)}
+                          </p>
+                          <p className="ds-p">
+                            Ksh{" "}
+                            {((100 - data.product?.discount) / 100) *
+                              data.product?.price?.toFixed(2)}
+                          </p>
+                        </>
+                      ) : (
+                        <p className="ds-p">Ksh {data.product?.price?.toFixed(2)}</p>
+                      )}
                     </div>
 
                     <div className="product-attributes">
@@ -137,7 +128,7 @@ const Product_Details = () => {
                     className="tab-content tab-active"
                     data-tab="description"
                   >
-                    <p className="product-desc">{product?.description}</p>
+                    <p className="product-desc">{data.product?.description}</p>
                   </div>
                   <div
                     className="tab-content reviews-container"

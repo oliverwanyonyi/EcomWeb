@@ -125,7 +125,7 @@
   .stars-container .fa-star {
     font-size: 13px;
   }
-  .btn {
+  .product .btn {
     border: none;
     outline: none;
     cursor: pointer;
@@ -145,20 +145,20 @@
   .stock-status {
     font-weight: 500;
   }
-  .product button {
+  .product .cart-btn {
     opacity: 0.8;
     background: var(--color-primary);
     color: var(--color-white);
     transition: 500ms;
     transform: translateY(100%);
   }
-  .product button span {
+  .product .cart-btn span {
     margin-right: 5px;
   }
   .product:hover button {
     transform: translateY(0);
   }
-  .product button:hover {
+  .product .cart-btn:hover {
     opacity: 1;
   }
   .discount-label {

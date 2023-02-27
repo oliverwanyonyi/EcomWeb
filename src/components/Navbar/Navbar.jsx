@@ -74,7 +74,7 @@ const Navbar = () => {
               <span className="item-icon" onClick={()=>navigate('/cart')}>
                 <i className="fas fa-shopping-basket"></i>
                 <span className="items-count">
-                  {" "}
+               
                   {state.cart.reduce((acc, item) => item.quantity + acc, 0)}
                 </span>
               </span>
@@ -96,12 +96,12 @@ const Navbar = () => {
                       <div className="item-thumb">
                         <img src={item.thumb} alt={item.title} />
                       </div>
-                      <span className="fas fa-times remove-icon"></span>
+                     
                     </div>
                   ))}
                 </div>
                 {state.cart.length === 0 ? (
-                  <Message />
+                  <Message type="cart" />
                 ) : (
                   <>
                     <div className="mini-cart-summary">

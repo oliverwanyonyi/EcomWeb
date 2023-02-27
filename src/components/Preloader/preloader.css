@@ -6,3 +6,24 @@
 .loader{
     width: 100vw;
 }
+.spinner{
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    border: 2px solid crimson;
+    border-top: 2px solid #fff;
+    border-bottom-color: #fff;
+    animation: spin 500ms infinite;
+    margin: 0 auto;
+}
+
+@keyframes spin{
+   
+        0% {
+            transform: translate3d(-50%, -50%, 0) rotate(0deg);
+          }
+          100% {
+            transform: translate3d(-50%, -50%, 0) rotate(360deg);
+          }
+    
+}

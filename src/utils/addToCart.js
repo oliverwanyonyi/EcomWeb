@@ -2,8 +2,8 @@
 export const addToCart = (product,state,dispatch) =>{
    
     let cartItem = {
-        title: product.title,
-        thumb: product.image,
+        title: product.name,
+        thumb: product.Product_Images[0].url,
         id: product.id,
         price: product.price,
       };

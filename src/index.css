@@ -5,20 +5,22 @@
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
-
 :root {
   --color-white: #ffffff;
   /* --color-light-greyish: rgba(247, 247, 247, 0.5); */
   --color-light-greyish: #f0f0f0;
   --color-grey: #696666;
-  --color-dark:#202020;
+  --color-dark: #202020;
   --color-black: #2e2c2c;
---color-primary: rgb(0, 161, 139);
+  --color-primary: rgb(0, 161, 139);
   /* --color-primary: #0a5ebe; */
   --color-redish: #f33d37;
 }
-ul{
+ul {
   list-style-type: none;
+}
+a{
+  color: var(--color-white);
 }
 html {
   scroll-behavior: smooth;
@@ -27,19 +29,21 @@ body {
   background: var(--color-light-greyish);
   overflow-x: hidden;
 }
-button,input,select,textarea{
+button,
+input,
+select,
+textarea {
   background: none;
   outline: none;
   border: none;
 }
 
-button{
+button {
   cursor: pointer;
 }
-.bg-white{
+.bg-white {
   background: var(--color-white);
 }
-
 
 .show__more-section {
   padding: 10px 0;
@@ -68,9 +72,25 @@ img {
   max-width: 100%;
   object-fit: cover;
 }
-.btn{
-  padding: 13px 20px!important;
+.btn {
+  padding: 7px 10px !important;
   cursor: pointer;
   font-size: 16px;
   border-radius: 8px;
+  color: #fff;
+  background: #202020;
+}
+.btn-primary {
+  color: var(--color-white);
+  background: var(--color-primary);
+}
+.btn-danger,
+.btn-danger a {
+  background: crimson;
+  color: var(--color-white) !important;
+}
+.loading-spinner {
+  width: 35px;
+  height: 35px;
+  border-top: 2px solid #ffff;
 }

@@ -2,7 +2,7 @@ import React from "react";
 import './product.css'
 import {Link,useNavigate} from 'react-router-dom'
 import Rating from "../Rating/Rating";
-import { addToCart } from "../../Routes/Product_Details/utils/addToCart";
+import { addToCart } from "../../utils/addToCart";
 import { AppState } from "../../Store/store";
 
 const Product = ({product:item}) => {
@@ -23,7 +23,7 @@ const Product = ({product:item}) => {
           </div>
 
           <Link to={"/products/" + item.id}>
-            <img src={item.image} loading="lazy" />
+            <img src={item?.Product_Images[0].url} loading="lazy" />
           </Link>
           <button className="btn cart-btn" onClick={handleClick}>
             <span className="btn-icon fas fa-shopping-basket"></span>
@@ -32,16 +32,21 @@ const Product = ({product:item}) => {
         </div>
         <div className="product-body">
           <Link to={"/products/" + item.id}>
-            <h2 className="product-title">{item.title}</h2>
+            <h2 className="product-title">{item.name}</h2>
           </Link>
           <div className="product-price">
-            <p className="rg-p">Ksh {(item.price*126).toFixed(2)}</p>
+            
 
-            <p className="ds-p">Ksh {(item.price*126 - 200).toFixed(2) }</p>
+            {item.discount > 0 ?
+          <>
+          <p className="rg-p">Ksh {(item.price).toFixed(2)}</p>
+          <p className="ds-p">Ksh { ((100 - item.discount)/100)*(item.price).toFixed(2) }</p>
+          </>
+            :<p className="ds-p">Ksh {(item.price).toFixed(2) }</p>}
           </div>
           <div className="review">
-            <Rating rating={item.rating.rate}/>
-            <p className="review-title">({item.rating.count}) reviews</p>
+            <Rating rating={item?.rating?.rate}/>
+            <p className="review-title">({item?.rating?.count}) reviews</p>
           </div>
         </div>
       </div>

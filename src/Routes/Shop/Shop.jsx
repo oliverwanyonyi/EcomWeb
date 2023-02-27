@@ -1,10 +1,14 @@
 import './shop.css'
 import Product from '../../components/Product/Product';
+import Navbar from '../../components/Navbar/Navbar';
 
 const Shop = () => {
   return (
+    <>
+    <Navbar/>
+    
     <section className="shop-section py-3">
-      <div className="container">
+      <div className="container-fluid">
         <div className="row">
           <div className="col-sm-12 col-lg-3 col-xl-2 ">
             <div className="bg-white px-3 py-3">
@@ -94,7 +98,7 @@ const Shop = () => {
                 </div>
               </div>
               <div className="row g-2 row-cols-2 row-cols-md-3 row-cols-lg-4 ">
-               <Product/>
+               {/* <Product/> */}
                 <div>
                   <div className="product-card product">
                     <div className="product-image">
@@ -141,6 +145,7 @@ const Shop = () => {
         </div>
       </div>
     </section>
+    </>
   );
 };
 
