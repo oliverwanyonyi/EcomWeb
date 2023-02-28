@@ -24,8 +24,8 @@ const CreateProduct = () => {
     console.log("widget");
     const widget = window.cloudinary.createUploadWidget(
       {
-        uploadPreset: "ecomerce_app",
-        cloudName: "wanyonyi",
+        uploadPreset: process.env.REACT_APP_CLOUD_PRESET,
+        cloudName: process.env.REACT_APP_CLOUD_NAME,
       },
       (error, result) => {
         console.log();

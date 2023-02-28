@@ -111,7 +111,7 @@ const Checkout = () => {
                     <div className="col-9">
                       <h4 className="item-title">{item.title}</h4>
                       <p className="item-price">
-                        Ksh {(item.price * 123).toFixed(2)}
+                        Ksh {(item.price).toFixed(2)}
                       </p>
                       <p className="item-quantity"> ({item.quantity})</p>
                     </div>

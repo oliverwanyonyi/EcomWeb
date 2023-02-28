@@ -86,13 +86,17 @@
     font-size: 25px;
     font-weight: 1000;
     flex: 1;
+    
     white-space: nowrap;
     color: transparent;
     -webkit-text-stroke-width: 0.5px;
     -webkit-text-stroke-color: var(--color-white);
     cursor: pointer;
   }
-  
+  .nav-brand img{
+    width: 100px;
+    height: 45px;
+  }
   .search-bar {
     flex: 3;
     display: flex;
