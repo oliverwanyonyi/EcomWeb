@@ -1,0 +1,21 @@
+.purchase-success{
+    padding: 30px 10px;
+}
+.success-wrapper .bg-white{
+    padding: 20px 30px;
+}
+.success-wrapper h2{
+    font-weight: 600;
+    color:var(--color-primary);
+    margin-bottom: 15px;
+    font-size: 16px;
+}
+.success-wrapper p{
+    font-weight: 400;
+    color: #2e2d2d;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+.purchase-success .btn{
+    font-size: 13px;
+}

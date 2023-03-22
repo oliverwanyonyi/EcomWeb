@@ -1,9 +1,7 @@
 import "./products_by_cats.css";
 import Product from "../Product/Product";
-import axios from "axios";
-import { useEffect, useState } from "react";
 import Preloader from "../Preloader/Preloader";
-import { useFetch } from "../../useFetch";
+import { useFetch } from "../../hooks/useFetch";
 import Message from "../MessageBox/Message";
 
 const ProductsByCats = () => {

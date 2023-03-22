@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useFetch } from "../../../useFetch";
+import { useFetch } from "../../../hooks/useFetch";
+import Message from "../../MessageBox/Message";
 import Spinner from "../../Preloader/Spinner";
 import Table from "../Table/Table";
 
@@ -27,7 +28,8 @@ const List = () => {
                   {loading ? (
                     <Spinner />
                   ) : (
-                    categories?.map((item) => (
+                     categories?.length === 0 ? 
+                      <Message type="order" msg="No Categories Found" />: categories?.map((item) => (
                       <tr>
                         
                         <td> {item.name}</td>

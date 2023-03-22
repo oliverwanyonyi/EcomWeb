@@ -5,7 +5,7 @@
     display: flex;
     align-items: center;
     justify-content: space-around;
-    padding: 10px 0;
+   
   }
   td .qty-container{
     width: 80px;
@@ -14,6 +14,7 @@
   .decrement-btn {
     cursor: pointer;
     font-size: 15px;
+    padding: 10px 20px;
   }
   .qty-container .counter {
     font-size: 14px;

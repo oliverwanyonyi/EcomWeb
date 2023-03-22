@@ -2,7 +2,7 @@ export const links = [
   {
     name: "Orders",
     sub_links: [
-      { name: "Orders", to: "/orders/all", id: 2 },
+      { name: "Orders", to: "/admin/orders/all", id: 1 },
     ],
     id:1
   },
@@ -32,7 +32,10 @@ sub_links:[
     name: "Categories",
     sub_links: [
       { name: "New Category", to: "/admin/categories/new", id: 1 },
+      { name: "New Sub Category", to: "/admin/sub_category", id: 3 },
+      
       { name: "Categories", to: "/admin/categories/all", id: 2 },
+      { name: "Sub Categories", to: "/admin/sub_categories/all", id: 4 },
     ],
     id:5
   },

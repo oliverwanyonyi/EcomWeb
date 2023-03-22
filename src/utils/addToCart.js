@@ -6,6 +6,7 @@ export const addToCart = (product,state,dispatch) =>{
         thumb: product.Product_Images[0].url,
         id: product.id,
         price: product.price,
+        discount:product.discount
       };
       const itemExists = state.cart.find((item) => item.id === product.id);
   

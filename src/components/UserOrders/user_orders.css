@@ -1,0 +1,45 @@
+.order-title {
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: var(--color-primary);
+}
+.order-list{
+    border: 1px solid #ececec;
+    padding: 10px 8px;
+}
+
+.item-details .item-name {
+  color: var(--color-primary);
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+.item-details .order-number {
+  color: #292929;
+  font-size: 16px;
+  font-weight: 400;
+  margin-bottom: 6px;
+}
+.order-number span {
+  font-weight: 600;
+}
+
+.orders-main .btn {
+  display: block;
+  text-align: center;
+  margin-top: 15px;
+}
+.order-img-container {
+    width: 140px;
+    height: 140px;
+    overflow: hidden;
+    border-radius: 5px;padding: 10px;
+    background: rgba(0, 161, 139, 0.315);
+  }
+.order-img-container img{
+    object-fit: cover;
+    object-position: center;
+    vertical-align: middle;
+    height: 100%;
+    width: 100%;
+}

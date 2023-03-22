@@ -5,20 +5,41 @@ import Navbar from "../../components/Navbar/Navbar";
 import Preloader from "../../components/Preloader/Preloader";
 import ProductGallery from "../../components/ProductGallery/ProductGallery";
 import { AppState } from "../../Store/store";
-import { useFetch } from "../../useFetch";
+import { useFetch } from "../../hooks/useFetch";
 import "./product_details.css";
 import { addToCart } from "../../utils/addToCart";
 import Spinner from "../../components/Preloader/Spinner";
+import Button from "../../components/Button/Button";
+import { toast } from "react-toastify";
+import { useRef } from "react";
 const Product_Details = () => {
   const navigate = useNavigate();
+  const [tab, setTab] = useState("description");
+  const tabRef = useRef();
   const { state, dispatch } = AppState();
-  const [qty, setQty] = useState(1);
   const { id } = useParams();
-  const {data,loading,error} = useFetch('/products/'+id)
- 
-  const handleClick = () => {
-    addToCart(data.product, state, dispatch);
-    navigate("/cart");
+  const { data, loading, error } = useFetch("/products/" + id);
+
+  const handleAddToCart = () => {
+    let item = {
+      ...data.product,
+      price: (
+        ((100 - data.product.discount) / 100) *
+        data?.product.price
+      ).toFixed(0),
+    };
+
+    addToCart(item, state, dispatch);
+    toast.success(`${data.product.name} Added to your cart`, {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
   };
   // const addToCart = () => {
 
@@ -43,7 +64,13 @@ const Product_Details = () => {
   return (
     <div className="main">
       <Navbar />
-      {loading ? <Spinner/>:<BreadCrump hierachies={data?.hierachies} />}
+      {loading ? (
+        <div className="container">
+          <Spinner />
+        </div>
+      ) : (
+        <BreadCrump hierachies={data?.hierachies} />
+      )}
       <div className="product-container">
         <div className="container">
           <div className="bg-white py-3 px-2">
@@ -71,16 +98,20 @@ const Product_Details = () => {
                       {data.product?.discount > 0 ? (
                         <>
                           <p className="rg-p">
-                            Ksh {(data.product?.price).toFixed(2)}
+                            Ksh {data.product?.price.toFixed(0)}
                           </p>
                           <p className="ds-p">
                             Ksh{" "}
-                            {((100 - data.product?.discount) / 100) *
-                              data.product?.price?.toFixed(2)}
+                            {(
+                              ((100 - data.product?.discount) / 100) *
+                              data.product?.price
+                            ).toFixed(0)}
                           </p>
                         </>
                       ) : (
-                        <p className="ds-p">Ksh {data.product?.price?.toFixed(2)}</p>
+                        <p className="ds-p">
+                          Ksh {data.product?.price?.toFixed(0)}
+                        </p>
                       )}
                     </div>
 
@@ -95,10 +126,13 @@ const Product_Details = () => {
                       </div> */}
 
                       <div className="actions-container">
-                        <button className="btn rd-c-sm" onClick={handleClick}>
+                        <Button
+                          background="btn rd-c-sm"
+                          handleAddToCart={handleAddToCart}
+                        >
                           <span className="btn-icon fas fa-shopping-basket"></span>
                           <span className="btn-title">Add to cart</span>
-                        </button>
+                        </Button>
                       </div>
                     </div>
                   </div>
@@ -115,23 +149,41 @@ const Product_Details = () => {
               <Preloader />
             ) : (
               <div className="product-footer">
-                <div className="product-footer-header">
-                  <div className="footer-tab tab-active" data-tab="description">
+                <div className="product-footer-header" ref={tabRef}>
+                  <div
+                    className={tab==="description"?"footer-tab tab-active":"footer-tab"}
+                    data-tab="description"
+                    onClick={() => setTab("description")}
+                  >
                     <h2 className="tab-title">Description</h2>
                   </div>
-                  <div className="footer-tab" data-tab="reviews">
+                  <div
+                    className={tab==="reviews"?"footer-tab tab-active":"footer-tab"}
+                    data-tab="reviews"
+                    onClick={() => setTab("reviews")}
+                  >
                     <h2 className="tab-title">Reviews</h2>
                   </div>
                 </div>
                 <div className="footer-body">
                   <div
-                    className="tab-content tab-active"
+                  
+                    className={
+                      tab === "description"
+                        ? "tab-content  tab-active"
+                        : "tab-content"
+                    }
                     data-tab="description"
                   >
                     <p className="product-desc">{data.product?.description}</p>
                   </div>
+                  :
                   <div
-                    className="tab-content reviews-container"
+                    className={
+                      tab === "reviews"
+                        ? "tab-content reviews-container tab-active"
+                        : "tab-content reviews-container"
+                    }
                     data-tab="reviews"
                   >
                     <div className="reviews-header">

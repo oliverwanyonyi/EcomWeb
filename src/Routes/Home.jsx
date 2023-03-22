@@ -1,15 +1,17 @@
-import BottomBar from '../components/BottomBar/BottomBar'
-import Navbar from '../components/Navbar/Navbar'
-import ProductsByCats from '../components/ProductByCategory/ProductsByCats'
+import BottomBar from "../components/BottomBar/BottomBar";
+import Navbar from "../components/Navbar/Navbar";
+import ProductsByCats from "../components/ProductByCategory/ProductsByCats";
+import LandingSection from "../Sections/LandingSection";
 
 const Home = () => {
   return (
     <main className="main">
-       <Navbar/>
-     <ProductsByCats/>  
-     <BottomBar/>
+      <Navbar />
+   <LandingSection/>
+      <ProductsByCats />
+      <BottomBar />
     </main>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

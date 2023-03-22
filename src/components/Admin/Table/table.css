@@ -3,6 +3,14 @@
   display: block;
   width: 100%;
 }
+.table-responsive::-webkit-scrollbar {
+  height:.6rem;
+}
+  .table-responsive::-webkit-scrollbar-thumb {
+    background: #fff;
+    border-radius: 0.5rem;
+   
+  }
 
 .page-header {
   padding: 20px 0;

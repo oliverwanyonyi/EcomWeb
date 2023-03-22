@@ -70,7 +70,6 @@ img {
   width: 100%;
   height: auto;
   max-width: 100%;
-  object-fit: cover;
 }
 .btn {
   padding: 7px 10px !important;

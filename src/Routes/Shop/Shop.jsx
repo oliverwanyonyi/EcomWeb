@@ -42,7 +42,7 @@ const Shop = () => {
                   </ul>
                 </div>
 
-                <div className="filter-item mb-3">
+                {/* <div className="filter-item mb-3">
                   <h3 className="filter-item-label">Brand</h3>
                   <ul className="filter-item-list">
                     <li className="item">
@@ -55,7 +55,7 @@ const Shop = () => {
                       <label for="shoes">chucktaylor</label>
                     </li>
                   </ul>
-                </div>
+                </div> */}
                 <div className="filter-item mb-3">
                   <h3 className="filter-item-label">Availability</h3>
                   <ul className="filter-item-list">

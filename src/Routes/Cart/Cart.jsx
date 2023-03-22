@@ -23,10 +23,15 @@ const Cart = () => {
     }
   ]} />
       <div className="container">
+      {state.cart.length === 0?<div className="bg-white msg">
+        <Message  type="cart"/>
+          </div>:
         <div className="row">
+       
+        
           <div className="col-md-9">
             <div className="bg-white px-2 py-3">
-              {state.cart.length === 0?<Message  type="cart"/>:
+             
               <table>
                 <thead className="cart-header">
                   <tr>
@@ -61,34 +66,35 @@ const Cart = () => {
 </div>
 </div>
  </td>
- <td className="cart-desktop-visible">  <span className="price-qty">{item.price} </span></td>
+ <td className="cart-desktop-visible">  <span className="price-qty">Ksh {item.price} </span></td>
  <td>
    <QuantityInput qty={item.quantity} item={item}/>
  </td>
- <td className="cart-desktop-visible"> <span className="price-amount">{(item.quantity * item.price).toFixed(2)}</span></td>
+ <td className="cart-desktop-visible"> <span className="price-amount">Ksh {(item.quantity * item.price).toFixed(0)}</span></td>
  </tr>
 
                   ))}
                  
                 </tbody>
               </table>
-}
+
             </div>
           </div>
+     
           <div className="col-md-3">
             <div className="bg-white px-2 py-2">
               <h1 className="cart-totals">Order Summary</h1>
               <ul className="cart-summary d-flex flex-column">
               <li className="cart-summary-item d-flex justify-content-between align-items-center">
                   <h3>Sub Total</h3>
-                  <p>{state.cart.reduce((acc,item)=>(item.price * item.quantity)+acc,0 ).toFixed(2)}</p>
+                  <p>Ksh {state.cart.reduce((acc,item)=>(item.price * item.quantity)+acc,0 ).toFixed(0)}</p>
                 </li>
                 <li className="cart-summary-item d-flex justify-content-between align-items-center">
                   <h3>Shipping Fee</h3>
                   <p>Calculating at checkout</p>
                 </li>
                 <li className="cart-summary-item">
-                    <Link className="btn continue-shopping-btn" to="/">Contine Shopping</Link>
+                    <Link className="btn continue-shopping-btn" to="/">Continue Shopping</Link>
                 </li>
                 <li className="cart-summary-item">
                     <Link className="btn checkout-btn" to="/checkout">Proceed to checkout</Link>
@@ -96,7 +102,10 @@ const Cart = () => {
               </ul>
             </div>
           </div>
+        
         </div>
+          
+        }
       </div>
       
     </main>

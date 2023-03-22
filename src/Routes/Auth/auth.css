@@ -1,0 +1,33 @@
+.auth .form-header{
+    background: var(--color-primary);
+    text-align: center;
+    color: #ffffff;
+    font-weight: 700;
+    
+}
+.profile-header{
+    padding: 20px 10px;
+}
+.auth img{
+    height: 77px;
+    width: 100px;
+    margin: 0 auto;
+}
+.form-body{
+    padding: 20px;
+}
+.form-footer{
+    padding: 0 20px 20px;
+}
+.form-footer .auth-redirect {
+    font-weight: 600;
+    color: #202020;
+    margin-top: 10px;
+}
+.form-footer .auth-redirect a{
+    font-weight: 400;
+    color: var(--color-primary);
+}
+.auth .bg-none{
+    background: none;
+}

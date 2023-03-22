@@ -7,12 +7,16 @@ import CreateProduct from "../../../components/Admin/ProductCreate/CreateProduct
 import Category from "../../../components/Admin/Category/Category";
 import ProductList from "../../../components/Admin/ProductList/ProductList";
 import List from "../../../components/Admin/CategoryList/List";
+import OrderList from "../../../components/Admin/OrderList/OrderList";
+import UpdateOrder from "../../../components/Admin/UpdateOrder/UpdateOrder";
+import SubCategory from "../../../components/Admin/SubCategory/SubCategory";
+import SubCategoryList from "../../../components/Admin/SubCategoryList/SubCategoryList";
 
 const Main = () => {
   const [showSideBar, setShowSideBar] = useState(true);
   const [showMenu, setShowMenu] = useState(false);
   const currPath = useResolvedPath().pathname;
-  console.log(currPath);
+  console.log(currPath.split('/'));
   return (
     <div className={showSideBar ? "sidebar-active" : ""}>
       <SideBar />
@@ -63,9 +67,13 @@ const Main = () => {
           <ProductList />
         ) : currPath === "/admin/categories/all" ? (
           <List />
-        ) : (
-          ""
-        )}
+        ) : currPath === "/admin/orders/all" ? (
+          <OrderList />
+        ) : currPath === `/admin/orders/${currPath.split('/')[3]}/update` ? (
+          <UpdateOrder />
+        ) : currPath === '/admin/sub_category'? (
+          <SubCategory/>
+        ):currPath ==="/admin/sub_categories/all"?<SubCategoryList/>:""}
       </div>
     </div>
   );

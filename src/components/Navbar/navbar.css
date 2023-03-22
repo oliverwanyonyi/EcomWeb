@@ -320,11 +320,18 @@
     background: var(--color-primary);
     color: var(--color-white);
     padding: 10px 13px;
-    border: 2px solid var(--color-primary);
+    border: 2px solid #f3b407;
+    border-radius: 0;
+width: 50%;
+text-align: center;
+  }
+  .mini-cart-footer .btn.view-cart{
+  
+    background: rgb(12, 18, 43);
   }
   .mini-cart-footer .checkout-btn {
-    background: none;
-    color: var(--color-primary);
+    background: #f3b407d3!important;
+    color: #ffffff;
   }
   .item-thumb {
     flex: 20%;

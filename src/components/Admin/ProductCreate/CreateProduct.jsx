@@ -1,17 +1,22 @@
 import { useState } from "react";
 import FormsContainer from "../../Forms/FormsContainer";
-import axios from "../../../axios";
 import { toast } from "react-toastify";
 import "./create.css";
 import { useNavigate } from "react-router-dom";
-import { useFetch } from "../../../useFetch";
+import { useFetch } from "../../../hooks/useFetch";
 import Spinner from "../../Preloader/Spinner";
+import Button from "../../Button/Button";
+import { useEffect } from "react";
+import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
+import { getErrorMessage } from "../../../utils/getErrorMessage";
 const CreateProduct = () => {
   const navigate = useNavigate();
   const { data: categories, loading: loadingCates } = useFetch("/categories");
+  const [sub_categories, setSubCategories] = useState([]);
   const [images, setImages] = useState([]);
   const [tempImg, setTempImg] = useState();
   const [loading, setLoading] = useState(false);
+  const axiosPrivate = useAxiosPrivate();
   const [product, setProduct] = useState({
     name: "",
     description: "",
@@ -44,7 +49,7 @@ const CreateProduct = () => {
 
     setTempImg(img.public_id);
 
-    axios
+    axiosPrivate
       .delete(`/resources/images/${img.public_id}`)
       .then(() => {
         setTempImg(null);
@@ -68,10 +73,10 @@ const CreateProduct = () => {
       product.price &&
       images.length > 0
     ) {
-      axios
+      axiosPrivate
         .post("/products/create", { ...product, product_images: images })
         .then((res) => {
-          toast.error(`${res.data.name} created successfully`, {
+          toast.success(`${res.data.name} created successfully`, {
             position: "top-right",
             autoClose: 5000,
             hideProgressBar: false,
@@ -86,21 +91,16 @@ const CreateProduct = () => {
           }, 3000);
         })
         .catch((error) => {
-          toast.error(
-            error.response && error.response.data.message
-              ? error.response.data.message
-              : error.message,
-            {
-              position: "top-right",
-              autoClose: 5000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-              theme: "light",
-            }
-          );
+          toast.error(getErrorMessage(error), {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
         })
         .finally(() => setLoading(false));
     } else {
@@ -116,8 +116,26 @@ const CreateProduct = () => {
       });
     }
   };
+  useEffect(() => {
+    const getSubCategories = async () => {
+      if (product.category !== "") {
+        try {
+          const {data }= await axiosPrivate.get(
+            "/categories/sub-categories/" + product.category
+          );
+          console.log(data);
+          setSubCategories(data);
+        } catch (error) {
+          console.log(error);
+          toast.error(getErrorMessage(error));
+        }
+      }
+    };
+    getSubCategories();
+  }, [product.category]);
+
   return (
-    <div>
+    <div className="new-product">
       <FormsContainer>
         <form onSubmit={handleSubmit}>
           <div className="form-header">
@@ -163,11 +181,18 @@ const CreateProduct = () => {
             <div className="row">
               <div className="col-md-6">
                 <div className="form-group">
-                  <label htmlFor="brand">Brand Name</label>
-                  <select name="brand" id="brand">
-                    <option value="nike">Nike</option>
-                    <option value="Oppo">Oppo</option>
-                    <option value="Samsung">Samsung</option>
+                  <label htmlFor="sub_category">Sub Category</label>
+
+                  <select
+                    name="sub_category"
+                    id="sub_category"
+                    onChange={handleChange}
+                  >
+                    <option value="">Select a Sub Category</option>
+
+                    {sub_categories?.map((cate) => (
+                      <option value={cate.id}>{cate.name}</option>
+                    ))}
                   </select>
                 </div>
               </div>
@@ -256,9 +281,9 @@ const CreateProduct = () => {
             {loading ? (
               <Spinner />
             ) : (
-              <button className="btn" type="submit">
-                Submit
-              </button>
+              <Button className="btn" type="submit" loading={loading}>
+                {loading ? <Spinner /> : "Submit"}
+              </Button>
             )}
           </div>
         </form>

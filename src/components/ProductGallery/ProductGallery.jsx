@@ -29,14 +29,14 @@ const ProductGallery = ({ images }) => {
         <div className="col .col-md-2 text-center">
           <div className="product-gallery gap d-flex flex-md-column align-items-center">
             {images.map((img, idx) => (
-              <div class={idx === 0 ?"selected gallery-img":"gallery-img"} key={idx} onClick={()=>handleClick(idx)} ref={addRefs}>
+              <div className={idx === 0 ?"selected gallery-img":"gallery-img"} key={idx} onClick={()=>handleClick(idx)} ref={addRefs}>
                 <img src={img.url} alt="" />
               </div>
             ))}
           </div>
         </div>
         <div className="col col-md-10">
-          <div class="main-product-image">
+          <div className="main-product-image">
             <img src={dispayImg.url} alt="" />
           </div>
         </div>

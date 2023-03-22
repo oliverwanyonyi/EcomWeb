@@ -4,14 +4,25 @@ import {Link,useNavigate} from 'react-router-dom'
 import Rating from "../Rating/Rating";
 import { addToCart } from "../../utils/addToCart";
 import { AppState } from "../../Store/store";
+import Button from "../Button/Button";
+import { toast } from "react-toastify";
 
 const Product = ({product:item}) => {
   const {state,dispatch} = AppState()
   const navigate = useNavigate()
-  const handleClick = () =>{
-    console.log(item,state);
-    addToCart(item,state,dispatch)
-    navigate('/cart')
+  const handleAddToCart = () =>{
+   
+    addToCart({...item,price:(((100 - item.discount)/100)*item.price).toFixed(0)},state,dispatch)
+     toast.success(`${item.name} Added to your cart`,{
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+     })
   }
   return (
     <div>
@@ -25,10 +36,10 @@ const Product = ({product:item}) => {
           <Link to={"/products/" + item.id}>
             <img src={item?.Product_Images[0].url} loading="lazy" />
           </Link>
-          <button className="btn cart-btn" onClick={handleClick}>
+          <Button background="btn cart-btn" type="button" handleAddToCart={handleAddToCart}>
             <span className="btn-icon fas fa-shopping-basket"></span>
             Add to cart
-          </button>
+          </Button>
         </div>
         <div className="product-body">
           <Link to={"/products/" + item.id}>
@@ -39,10 +50,10 @@ const Product = ({product:item}) => {
 
             {item.discount > 0 ?
           <>
-          <p className="rg-p">Ksh {(item.price).toFixed(2)}</p>
-          <p className="ds-p">Ksh { ((100 - item.discount)/100)*(item.price).toFixed(2) }</p>
+          <p className="rg-p">Ksh {(item.price.toFixed(0))}</p>
+          <p className="ds-p">Ksh { (((100 - item.discount)/100)*(item.price)).toFixed(0)}</p>
           </>
-            :<p className="ds-p">Ksh {(item.price).toFixed(2) }</p>}
+            :<p className="ds-p">Ksh {item.price.toFixed(0) }</p>}
           </div>
           <div className="review">
             <Rating rating={item?.rating?.rate}/>

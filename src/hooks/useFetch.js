@@ -1,14 +1,15 @@
-import axios from "./axios";
 import { useState, useEffect } from "react";
+import useAxiosPrivate from "./useAxiosPrivate";
 
 export const useFetch = (url) => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const axiosPrivate = useAxiosPrivate();
 
   useEffect(() => {
     setLoading(true);
-    axios
+    axiosPrivate
       .get(url)
       .then((res) => {
         console.log(res);

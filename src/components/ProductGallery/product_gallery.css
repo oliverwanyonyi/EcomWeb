@@ -1,14 +1,14 @@
 .main-product-image {
-  height: 65vh;
+  height:270px;
   overflow: hidden;
 }
 .main-product-image img {
   height: 100%;
+  object-fit: contain;
 }
 
 .gallery-img.selected {
- outline: 1px solid var(--color-redish);
- outline-offset: 2px;
+ border: 1px solid var(--color-redish);
 }
 
 .product-gallery img {
@@ -18,7 +18,7 @@
   height: 60px;
   width: 60px;
   cursor: pointer;
-  border-radius: 10px;
+  transition: 400ms;
 }
 
 .gap{
@@ -27,4 +27,10 @@
 .product-gallery-gallery{
   text-align: center;
 
+}
+
+@media(min-wdith:768px){
+  .main-product-image{
+    height: 350px;
+  }
 }

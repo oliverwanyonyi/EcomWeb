@@ -1,0 +1,17 @@
+.profile-sidebar-container .sidebar-list-items{
+    display: flex;
+    flex-direction: column;
+}
+.profile-sidebar-container .sidebar-list-items li a{
+    display: block;
+    color: var(--color-primary);
+    padding: 8px 6px;
+    font-weight: 500;
+    font-size: 16px;
+}
+.profile-sidebar-container .sidebar-list-items li.active a{
+    background: var(--color-primary);
+    opacity: .7;
+    color: #ffffff;
+}
+

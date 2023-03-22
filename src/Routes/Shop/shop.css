@@ -9,6 +9,10 @@ color: var(--color-black);
     color: var(--color-black);
     margin-bottom: 10px;
 }
+select#sort{
+    padding: 0;
+    margin-top: 5px;
+}
 .filter-item-list{
     display: flex;
     flex-direction: column;
