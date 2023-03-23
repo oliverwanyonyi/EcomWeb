@@ -1,0 +1,92 @@
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  opacity: 0;
+  visibility: hidden;
+}
+.modal-overlay {
+  position: absolute;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.6);
+  visibility: hidden;
+  opacity: 0;
+  transition: 500ms;
+  z-index: 10;
+}
+.modal-form {
+  z-index: 10;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  visibility: hidden;
+  opacity: 0;
+  transition: 800ms;
+  width: 90vw;
+  top: -100%;
+}
+.modal-form form {
+  display: block;
+  overflow-y: auto;
+  max-height: 80vh;
+}
+
+.modal.modal-open {
+  opacity: 1;
+  visibility: visible;
+}
+.modal .fa-times {
+  cursor: pointer;
+  font-size: 18px;
+  padding: 10px 20px;
+  cursor: pointer;
+  color: var(--color-primary);
+  border-radius: 5px;
+}
+.modal .fa-times:hover {
+  background: #ececec;
+}
+.modal.modal-open .modal-overlay {
+  opacity: 1;
+  visibility: visible;
+}
+.modal.modal-open .modal-form {
+  opacity: 1;
+  visibility: visible;
+  top: 60px;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+.modal-header h3 {
+  color: var(--color-primary);
+  font-weight: 500;
+  font-size: 18px;
+}
+.modal-form .container {
+  background: var(--color-white);
+  padding: 10px 10px;
+  width: inherit;
+  margin: 0 auto;
+}
+.rating-wrapper {
+  z-index: 30;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.modal .btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}

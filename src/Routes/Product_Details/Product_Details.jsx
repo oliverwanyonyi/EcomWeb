@@ -12,6 +12,10 @@ import Spinner from "../../components/Preloader/Spinner";
 import Button from "../../components/Button/Button";
 import { toast } from "react-toastify";
 import { useRef } from "react";
+import Rating from "../../components/Rating/Rating";
+import Message from "../../components/MessageBox/Message";
+import { useEffect } from "react";
+import { getErrorMessage } from "../../utils/getErrorMessage";
 const Product_Details = () => {
   const navigate = useNavigate();
   const [tab, setTab] = useState("description");
@@ -30,7 +34,7 @@ const Product_Details = () => {
     };
 
     addToCart(item, state, dispatch);
-    toast.success(`${data.product.name} Added to your cart`, {
+    toast.success(`${data.product.title} Added to your cart`, {
       position: "top-right",
       autoClose: 5000,
       hideProgressBar: false,
@@ -60,7 +64,11 @@ const Product_Details = () => {
 
   //   dispatch({ type: "ADD_TO_CART", payload: { item: cartItem } });
   // };
-
+useEffect(()=>{
+  if(error){
+    toast.error(getErrorMessage(error))
+  }
+},[])
   return (
     <div className="main">
       <Navbar />
@@ -79,38 +87,35 @@ const Product_Details = () => {
             ) : (
               <div className="row g-3">
                 <div className="col-md-6">
-                  <ProductGallery images={data.product.Product_Images} />
+                  <ProductGallery images={data?.product.Product_Images} />
                 </div>
                 <div className="col-md-6">
                   <div className="col_product-details">
-                    <h2 className="product-title">{data.product?.name}</h2>
+                    <h2 className="product-title">{data?.product?.title}</h2>
                     <div className="review">
-                      <div className="stars-container">
-                        <span className="fas fa-star"></span>
-                        <span className="fas fa-star"></span>
-                        <span className="fas fa-star"></span>
-                        <span className="fas fa-star"></span>
-                        <span className="fas fa-star"></span>
-                      </div>
-                      <p className="review-title">(10) reviews</p>
+                      <Rating rating={data?.product.averageRating} />
+
+                      <p className="review-title">
+                        ({data?.product.reviewsCount}) reviews
+                      </p>
                     </div>
                     <div className="product-price">
-                      {data.product?.discount > 0 ? (
+                      {data?.product?.discount > 0 ? (
                         <>
                           <p className="rg-p">
-                            Ksh {data.product?.price.toFixed(0)}
+                            Ksh {data?.product?.price.toFixed(0)}
                           </p>
                           <p className="ds-p">
                             Ksh{" "}
                             {(
-                              ((100 - data.product?.discount) / 100) *
-                              data.product?.price
+                              ((100 - data?.product?.discount) / 100) *
+                              data?.product?.price
                             ).toFixed(0)}
                           </p>
                         </>
                       ) : (
                         <p className="ds-p">
-                          Ksh {data.product?.price?.toFixed(0)}
+                          Ksh {data?.product?.price?.toFixed(0)}
                         </p>
                       )}
                     </div>
@@ -151,14 +156,20 @@ const Product_Details = () => {
               <div className="product-footer">
                 <div className="product-footer-header" ref={tabRef}>
                   <div
-                    className={tab==="description"?"footer-tab tab-active":"footer-tab"}
+                    className={
+                      tab === "description"
+                        ? "footer-tab tab-active"
+                        : "footer-tab"
+                    }
                     data-tab="description"
                     onClick={() => setTab("description")}
                   >
                     <h2 className="tab-title">Description</h2>
                   </div>
                   <div
-                    className={tab==="reviews"?"footer-tab tab-active":"footer-tab"}
+                    className={
+                      tab === "reviews" ? "footer-tab tab-active" : "footer-tab"
+                    }
                     data-tab="reviews"
                     onClick={() => setTab("reviews")}
                   >
@@ -167,7 +178,6 @@ const Product_Details = () => {
                 </div>
                 <div className="footer-body">
                   <div
-                  
                     className={
                       tab === "description"
                         ? "tab-content  tab-active"
@@ -175,9 +185,9 @@ const Product_Details = () => {
                     }
                     data-tab="description"
                   >
-                    <p className="product-desc">{data.product?.description}</p>
+                    <p className="product-desc">{data?.product?.description}</p>
                   </div>
-                  :
+
                   <div
                     className={
                       tab === "reviews"
@@ -187,27 +197,31 @@ const Product_Details = () => {
                     data-tab="reviews"
                   >
                     <div className="reviews-header">
-                      <h2 className="title">Reviews (2)</h2>
+                      <h2 className="title">
+                        Reviews ({data?.product?.Reviews.length})
+                      </h2>
                     </div>
                     <div className="reviews-body">
-                      <div className="product-review">
-                        <div className="review-l">
-                          <h2 className="review-user-name">Oliver Wanyonyi</h2>
-                          <p className="review-time-stamp">4 days ago</p>
-                          <div className="stars-container">
-                            <span className="fas fa-star"></span>
-                            <span className="fas fa-star"></span>
-                            <span className="fas fa-star"></span>
-                            <span className="fas fa-star"></span>
-                            <span className="fas fa-star"></span>
+                      {data?.product?.Reviews.length === 0 ? (
+                        <Message msg="This product has not been reviewed yet" />
+                      ) : (
+                        data?.product?.Reviews.map((review, idx) => (
+                          <div className="product-review" key={idx}>
+                            <div className="review-l">
+                              <h2 className="review-user-name">
+                              Anonymous
+                              </h2>
+                              <p className="review-time-stamp">
+                                {review?.createdAt}
+                              </p>
+                              <Rating rating={review.rate} />
+                            </div>
+                            <div className="review-r">
+                              <div className="comment">{review?.comment}</div>
+                            </div>
                           </div>
-                        </div>
-                        <div className="review-r">
-                          <div className="comment">
-                            Great shoes nice quality
-                          </div>
-                        </div>
-                      </div>
+                        ))
+                      )}
                     </div>
                   </div>
                 </div>

@@ -93,3 +93,10 @@ img {
   height: 35px;
   border-top: 2px solid #ffff;
 }
+
+.on{
+  color: gold;
+}
+.off{
+  color: gray;
+}

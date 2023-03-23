@@ -1,8 +1,8 @@
 
 export const addToCart = (product,state,dispatch) =>{
-   
+   console.log(product);
     let cartItem = {
-        title: product.name,
+        title: product.title,
         thumb: product.Product_Images[0].url,
         id: product.id,
         price: product.price,

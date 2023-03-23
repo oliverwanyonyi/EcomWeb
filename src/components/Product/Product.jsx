@@ -43,7 +43,7 @@ const Product = ({product:item}) => {
         </div>
         <div className="product-body">
           <Link to={"/products/" + item.id}>
-            <h2 className="product-title">{item.name}</h2>
+            <h2 className="product-title">{item.title}</h2>
           </Link>
           <div className="product-price">
             
@@ -56,8 +56,8 @@ const Product = ({product:item}) => {
             :<p className="ds-p">Ksh {item.price.toFixed(0) }</p>}
           </div>
           <div className="review">
-            <Rating rating={item?.rating?.rate}/>
-            <p className="review-title">({item?.rating?.count}) reviews</p>
+            <Rating rating={item?.averageRating}/>
+            <p className="review-title">({item?.Reviews.length}) reviews</p>
           </div>
         </div>
       </div>

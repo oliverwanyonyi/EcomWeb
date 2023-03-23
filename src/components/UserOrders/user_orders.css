@@ -30,11 +30,11 @@
   margin-top: 15px;
 }
 .order-img-container {
-    width: 140px;
-    height: 140px;
+    width: 130px;
+    height: 130px;
     overflow: hidden;
     border-radius: 5px;padding: 10px;
-    background: rgba(0, 161, 139, 0.315);
+    background: rgba(0, 161, 139, 0.116);
   }
 .order-img-container img{
     object-fit: cover;
@@ -42,4 +42,23 @@
     vertical-align: middle;
     height: 100%;
     width: 100%;
+}
+.order-status{
+  background: #ececec;
+  padding: 10px;
+  border-radius: 5px;
+  text-transform: capitalize;
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+.order-status.placed, .order-status.shipped{
+  color:#f35212;
+}
+.order-status.delivered{
+  color:var(--color-primary);
+}
+
+.order-status.cancelled{
+  color:#d3140d;
 }

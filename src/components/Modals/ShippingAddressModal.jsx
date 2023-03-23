@@ -1,4 +1,4 @@
-import axios from "../../axios";
+import './modal.css'
 import React, { useState } from "react";
 import { toast } from "react-toastify";
 import Button from "../Button/Button";

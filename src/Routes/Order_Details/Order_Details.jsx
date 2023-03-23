@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import BottomBar from "../../components/BottomBar/BottomBar";
 import Button from "../../components/Button/Button";
+import RatingModal from "../../components/Modals/RatingModal";
 import Navbar from "../../components/Navbar/Navbar";
 import Preloader from "../../components/Preloader/Preloader";
 import { useFetch } from "../../hooks/useFetch";
@@ -10,6 +11,12 @@ import "./order_details.css";
 const Order_Details = () => {
   const { id } = useParams();
   const { data, loading, error } = useFetch("/orders/" + id);
+  const [showModal,setShowModal] = useState(false);
+  const [itemId,setItemId] = useState();
+  const handleClick = (id)=>{
+   setShowModal(true);
+    setItemId(id)
+  }
   return (
     <div>
       <Navbar />
@@ -21,10 +28,10 @@ const Order_Details = () => {
               <div className="row justify-content-between">
                 <div className="order-info">
                   <div className="order-id">#{id}</div>
-                  <div className="order-status">
+                  <div className={"order-status "+data?.order.status}>
                     {data?.order.delivered
-                      ? data?.order.deliverdAt
-                      : "Not yet delivered"}
+                      ?"Delivered on "+ data?.order.deliveredAt
+                      : data?.order.status}
                   </div>
                 </div>
               </div>
@@ -55,7 +62,7 @@ const Order_Details = () => {
                           {item.quantity}
                         </div>
                         <div>
-                          <button className="btn btn-outlined" type="buton">
+                          <button className="btn review-btn" disabled={!item.delivered} title={item.delivered?"You can now review this product":"You will be able to review this product once its delivered"} type="buton" onClick={()=>handleClick(item.id)}>
                             Leave Review
                           </button>
                         </div>
@@ -68,6 +75,7 @@ const Order_Details = () => {
           </div>
         </div>
       </div>
+       <RatingModal showModal={showModal} setShowModal={setShowModal} id={itemId}/>
       <BottomBar />
     </div>
   );

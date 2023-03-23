@@ -21,22 +21,22 @@ const UserOrders = () => {
                 <div className="col-md-4 col-lg-3">
                   <div className="order-img-container">
                     <img
-                      src={order.orderItems[0].product_display}
-                      alt={order.orderItems[0].title}
+                      src={order?.orderItems[0]?.product_display}
+                      alt={order.orderItems[0]?.title}
                     />
                   </div>
                 </div>
                 <div className="col-md-8 col-lg-9 d-md-flex justify-content-md-between">
                   <div className="item-details">
-                    <h2 className="item-name">{order.orderItems[0].title}</h2>
+                    <h2 className="item-name">{order.orderItems[0]?.title}</h2>
                     <p className="order-number">
                       {" "}
                       <span>Order</span> : #{order.id}
                     </p>
-                    <div className="order-status">
+                    <div className={"order-status "+order.status}>
                       {order.delivered
                         ? "Delivered on " + order.deliveredAt
-                        : "Not Yet Delivered"}
+                        : order.status}
                     </div>
                   </div>
                   <Link
