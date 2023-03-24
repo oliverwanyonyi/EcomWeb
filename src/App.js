@@ -15,6 +15,7 @@ import Sidebar from "./components/CategoriesSidebar/Sidebar";
 import { AppState } from "./Store/store";
 import SuccessfulPurchase from "./Routes/ThankYou/SuccessfulPurchase";
 import Order_Details from "./Routes/Order_Details/Order_Details";
+import NotFound from "./Routes/error/404";
 
 function App() {
   const { showCategories } = AppState();
@@ -46,8 +47,8 @@ function App() {
         <Route path="/admin/orders/:id/update" element={<Main />} />
         <Route path="/admin/sub_category" element={<Main />} />
         <Route path="/admin/sub_categories/all" element={<Main />} />
-
-      </Routes>
+        <Route path="*" element={<NotFound/>}
+/>      </Routes>
 
       <ToastContainer />
       {showCategories && <Sidebar />}

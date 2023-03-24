@@ -3,7 +3,8 @@ import { useFetch } from "../../../hooks/useFetch";
 import Message from "../../MessageBox/Message";
 import Spinner from "../../Preloader/Spinner";
 import Table from "../Table/Table";
-
+import moment from 'moment'
+import './order_list.css'
 const OrderList = () => {
   const { data, loading } = useFetch("/orders/all");
  
@@ -39,16 +40,16 @@ const OrderList = () => {
                           {item.paid ? (
                             <span className="success">Paid</span>
                           ) : (
-                            <span className="info">Not paid</span>
+                            <span className="danger">Not paid</span>
                           )}
                         </td>
                         <td>
                           {item.paid ? (
                             <span className="success">
-                              Paid On {item.paidAt}
+                              Paid On {moment(item.paidAt).format('Do MMMM YYYY h:mm a')}
                             </span>
                           ) : (
-                            <span className="info">Not paid</span>
+                            <span className="danger">Not paid</span>
                           )}
                         </td>
                         <td>Ksh {item.orderTotal}</td>
@@ -73,16 +74,16 @@ const OrderList = () => {
                         </td>
 
                         <td> {item.paymentMethod}</td>
-                        <td>{item.createdAt}</td>
+                        <td>{moment(item.createdAt).format('Do MMMM YYYY h:mm a')}</td>
                         <td>
                           {item.delivered
-                            ?"Delivered on "+ item.deliveredAt
-                            : "Not yet delivered"}
+                            ?<span className="success">Delivered on { moment(item.deliveredAt).format('Do MMMM YYYY h:mm a')}</span>
+                            : <span className="danger">Not yet delivered</span>}
                         </td>
 
                         <td>
                           <div className="d-flex gap-1">
-                            <button className="btn btn-danger">Delete</button>
+                           
                             <button className="btn btn-primary">
                               <Link to={`/admin/orders/${item.id}/update`}>Edit</Link>
                             </button>

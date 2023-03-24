@@ -36,7 +36,7 @@ const List = () => {
                         
                         <td>
                           <div className="d-flex gap-1">
-                            <button className="btn btn-danger">Delete</button>
+                           
                             <button className="btn btn-primary">
                               <Link to="/">Edit</Link>
                             </button>

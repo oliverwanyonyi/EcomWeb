@@ -13,7 +13,7 @@ const Sidebar = () => {
     <div className="sidebar-categories-container categories-container bg-white">
                 <h2 className="categories-header">Categories</h2>
                 <ul className="categories-list">
-                  {data?.categories.map(cate=>( <li className="category-list-item">
+                  {data?.categories.map(cate=>( <li className="category-list-item" key={cate.id}>
                     <span className="parent-category-title">{cate.name}</span>
                     <ul className="sub-category-list-items">
                     {cate.sub_categories.map((sub_cate,idx)=>(<li className="sub-category-list-item" key={idx}><Link to={"/shop?slug="+sub_cate.slug}>{sub_cate.name}</Link></li>))}

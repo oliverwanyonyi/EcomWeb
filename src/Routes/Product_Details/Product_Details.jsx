@@ -16,6 +16,8 @@ import Rating from "../../components/Rating/Rating";
 import Message from "../../components/MessageBox/Message";
 import { useEffect } from "react";
 import { getErrorMessage } from "../../utils/getErrorMessage";
+import Product from "../../components/Product/Product";
+import moment from "moment";
 const Product_Details = () => {
   const navigate = useNavigate();
   const [tab, setTab] = useState("description");
@@ -64,11 +66,8 @@ const Product_Details = () => {
 
   //   dispatch({ type: "ADD_TO_CART", payload: { item: cartItem } });
   // };
-useEffect(()=>{
-  if(error){
-    toast.error(getErrorMessage(error))
-  }
-},[])
+console.log(error);
+
   return (
     <div className="main">
       <Navbar />
@@ -198,21 +197,23 @@ useEffect(()=>{
                   >
                     <div className="reviews-header">
                       <h2 className="title">
-                        Reviews ({data?.product?.Reviews.length})
+                        Reviews ({data?.product?.reviewsCount})
                       </h2>
                     </div>
                     <div className="reviews-body">
-                      {data?.product?.Reviews.length === 0 ? (
+                      {data?.product?.reviewsCount === 0 ? (
                         <Message msg="This product has not been reviewed yet" />
                       ) : (
-                        data?.product?.Reviews.map((review, idx) => (
+                        data?.product?.reviews.map((review, idx) => (
                           <div className="product-review" key={idx}>
                             <div className="review-l">
                               <h2 className="review-user-name">
-                              Anonymous
+                                {review?.user?.email}
                               </h2>
                               <p className="review-time-stamp">
-                                {review?.createdAt}
+                                {moment(review?.createdAt).format(
+                                  "Do MMMM YYYY h:mm a"
+                                )}
                               </p>
                               <Rating rating={review.rate} />
                             </div>
@@ -230,21 +231,25 @@ useEffect(()=>{
           </div>
         </div>
       </div>
-      <div id="related-section">
-        <div className="container">
-          <div className="bg-white py-3 rd-c-sm px-2">
-            <div className="products-section-header">
-              <h2 className="title">Related products</h2>
-            </div>
-            <div className="row g-2 row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5">
-              {/* <Product /> */}
-            </div>
-            <div className="show__more-section">
-              <button className="btn show-more-btn">Show More</button>
+      {data?.product?.relatedProducts && (
+        <div id="related-section">
+          <div className="container">
+            <div className="bg-white py-3 rd-c-sm px-2">
+              <div className="products-section-header">
+                <h2 className="title">Simillar products</h2>
+              </div>
+              <div className="row g-2 row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5">
+                {data?.product?.relatedProducts.map((product) => (
+                  <Product product={product} />
+                ))}
+              </div>
+              <div className="show__more-section">
+                <button className="btn show-more-btn">Show More</button>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };

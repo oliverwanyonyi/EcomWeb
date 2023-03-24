@@ -7,7 +7,7 @@ const BreadCrump = ({hierachies}) => {
       <div className="bg-white rd-c-sm">
         <ul className="site-nav-items py-lg px-3">
          
-          {hierachies.map((hierachy,idx)=>{
+          {hierachies?.map((hierachy,idx)=>{
             if(hierachy === hierachies[hierachies.length - 1]){
               return <li className="site-nav-item" key={idx}>
                 {hierachy.name}

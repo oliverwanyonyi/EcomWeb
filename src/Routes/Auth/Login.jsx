@@ -127,7 +127,7 @@ const Register = () => {
               <div className="form-footer">
                 <Button type="submit" loading={loading}>{loading ? <Spinner/>:"Login"}</Button>
                 <p className="auth-redirect">
-                  Forgot password <Link to="/pass-reset">Reset</Link>
+                  Don't have an account <Link to="/register">Register</Link>
                 </p>
               </div>
             </form>

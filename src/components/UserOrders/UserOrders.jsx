@@ -3,6 +3,7 @@ import { useFetch } from "../../hooks/useFetch";
 import Message from "../MessageBox/Message";
 import Preloader from "../Preloader/Preloader";
 import "./user_orders.css";
+import moment from "moment"
 
 const UserOrders = () => {
   const { data, loading, error } = useFetch("/orders/user/all");
@@ -33,9 +34,9 @@ const UserOrders = () => {
                       {" "}
                       <span>Order</span> : #{order.id}
                     </p>
-                    <div className={"order-status "+order.status}>
+                    <div className={order.status==="delivered"?"success":"danger"}>
                       {order.delivered
-                        ? "Delivered on " + order.deliveredAt
+                        ? "Delivered on " + moment(order.deliveredAt).format('Do MMMM YYYY h:mm a')
                         : order.status}
                     </div>
                   </div>

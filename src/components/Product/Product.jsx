@@ -57,7 +57,7 @@ const Product = ({product:item}) => {
           </div>
           <div className="review">
             <Rating rating={item?.averageRating}/>
-            <p className="review-title">({item?.Reviews.length}) reviews</p>
+            <p className="review-title">({item?.reviewsCount}) reviews</p>
           </div>
         </div>
       </div>

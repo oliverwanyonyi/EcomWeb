@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import BottomBar from "../../components/BottomBar/BottomBar";
-import Button from "../../components/Button/Button";
+import moment from 'moment'
 import RatingModal from "../../components/Modals/RatingModal";
 import Navbar from "../../components/Navbar/Navbar";
 import Preloader from "../../components/Preloader/Preloader";
@@ -13,9 +13,9 @@ const Order_Details = () => {
   const { data, loading, error } = useFetch("/orders/" + id);
   const [showModal,setShowModal] = useState(false);
   const [itemId,setItemId] = useState();
-  const handleClick = (id)=>{
+  const handleClick = (reviewId)=>{
    setShowModal(true);
-    setItemId(id)
+    setItemId(reviewId)
   }
   return (
     <div>
@@ -28,9 +28,9 @@ const Order_Details = () => {
               <div className="row justify-content-between">
                 <div className="order-info">
                   <div className="order-id">#{id}</div>
-                  <div className={"order-status "+data?.order.status}>
+                  <div className={data?.order.status ==="delivered"?"success":'danger'}>
                     {data?.order.delivered
-                      ?"Delivered on "+ data?.order.deliveredAt
+                      ?"Delivered on "+ moment(data?.order.deliveredAt).format('Do MMMM YYYY h:mm a')
                       : data?.order.status}
                   </div>
                 </div>
@@ -62,7 +62,8 @@ const Order_Details = () => {
                           {item.quantity}
                         </div>
                         <div>
-                          <button className="btn review-btn" disabled={!item.delivered} title={item.delivered?"You can now review this product":"You will be able to review this product once its delivered"} type="buton" onClick={()=>handleClick(item.id)}>
+                          {console.log(item)}
+                          <button className="btn review-btn" disabled={!data.order.delivered} title={data.order.delivered?"You can now review this product":"You will be able to review this product once its delivered"} type="buton" onClick={()=>handleClick(item.itemId)}>
                             Leave Review
                           </button>
                         </div>

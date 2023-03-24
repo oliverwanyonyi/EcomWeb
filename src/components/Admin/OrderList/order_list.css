@@ -1,0 +1,13 @@
+.danger, .success{
+    padding: 10px 20px;
+    font-weight: 500;
+    font-size: 14px;
+}
+.danger{
+    background: rgba(255,0,0,.3);
+    color: #101010;
+}
+.success{
+    background: rgba(0,255,0,.3);
+    color: #101010;
+}

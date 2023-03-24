@@ -39,7 +39,7 @@ const ProductList = () => {
                         <td>
                           <img src={item.Product_Images[0].url} alt="" />
                         </td>
-                        <td> {item.name}</td>
+                        <td> {item.title}</td>
                         <td> {item.Category.name}</td>
                         <td>Ksh {item.price}</td>
                         <td>Ksh {item.discount} %</td>
@@ -48,7 +48,6 @@ const ProductList = () => {
                         <td>{item.countInStock}</td>
                         <td>
                           <div className="d-flex gap-1">
-                            <button className="btn btn-danger">Delete</button>
                             <button className="btn btn-primary">
                               <Link to="/">Edit</Link>
                             </button>

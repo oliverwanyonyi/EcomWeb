@@ -28,7 +28,7 @@ const ProductGallery = ({ images }) => {
       <div className="row flex-column-reverse flex-md-row g-2">
         <div className="col .col-md-2 text-center">
           <div className="product-gallery gap d-flex flex-md-column align-items-center">
-            {images.map((img, idx) => (
+            {images?.map((img, idx) => (
               <div className={idx === 0 ?"selected gallery-img":"gallery-img"} key={idx} onClick={()=>handleClick(idx)} ref={addRefs}>
                 <img src={img.url} alt="" />
               </div>

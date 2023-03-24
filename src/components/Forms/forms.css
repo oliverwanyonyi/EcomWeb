@@ -43,5 +43,5 @@ select:focus {
 .form-footer button {
   background: var(--color-primary);
   color: var(--color-white);
-  
+  width: 100%;
 }
